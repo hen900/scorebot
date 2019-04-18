@@ -73,23 +73,23 @@ def update():
             if i.isDown():
                 f.write('<p><span style="font-size: 10pt;  font-family: arial, helvetica, sans-serif;">'
                          + i.getName()
-                        + ' not functional -5 points</span></p>')
+                        + ' not functional &ndash 5 points</span></p>')
         for i in users:
             if not i.works():
                 f.write('<p><span style="font-size: 10pt;  font-family: arial, helvetica, sans-serif;"> User '
                          + i.getName()
-                        + ' not functional -5 points</span></p>')
+                        + ' not functional &ndash 5 points</span></p>')
         f.write('</font><p><span style="font-family: arial, helvetica, sans-serif;"><strong>'
                  + str(numFixedVulns) + ' out of ' + str(numVulns)
                 + '  Vulnerabilities Fixed</strong></span></p>\n')
         for i in allVulns:
             if i.isFixed():
                 f.write('<p><span style="font-size: 10pt; font-family: arial, helvetica, sans-serif;">'
-                         + i.getDescription() + ' – '
+                         + i.getDescription() + ' &ndash '
                         + str(i.getValue()) + ' points</span></p>')
         f.write('</div> <div class="row"> <div class="column right" style="background-color:#0d60bf;"></div> </body>'
                 )
-        f.write('meta http-equiv="refresh" content="20">')
+        f.write('<meta http-equiv="refresh" content="20">')
         f.write('<footer><h6>Henry Mackay</h6></footer>')
 
 
