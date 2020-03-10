@@ -14,7 +14,7 @@ class Vuln:
     #returns the point value of a vuln
     def getValue(self):
         return self.val
-    #retruns the description of a vuln
+    #returns the description of a vuln
     def getDescription(self):
         return self.desc
     #returns True if a vuln if fixed, false if it is not
