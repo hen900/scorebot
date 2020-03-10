@@ -95,7 +95,7 @@ def update():
 
 
 mainUser = 'analyst'
-users = [User('analyst'), User('cyber')]
+users = [User(mainUser), User('cyber')]
 services = [Service('sshd', 22), Service('mysqld', 3306)]
 allVulns = [
     Vuln('Forensics Question correct', 1, '[ "$(grep answer /home/'+ mainUser + '/Desktop/Forensics_1.txt)" ]'),
