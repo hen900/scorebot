@@ -12,7 +12,15 @@ Services are defined in the services array and should be created with a process 
 services = [Service('sshd', 22), Service('mysqld', 3306)]
 ```
 ### Creating Vulnerabilities
-
-
+Vulnerabilites are based on booleans to be run on the host system. ll Vuln objects should be created in the allVulns array. A vulnerability has the following fields. 
+```
+Vuln('Text_to_be_displayed when_vulnerability_is_fixed',point_value, 'scoring_boolean')
+```
+Scoring booleans are placed in between brackets and run in the command line. Some examples of scoring booleans:
+```
+ Vuln('Secure Permissions set for shadow file', 5,'[ "$(stat -c "%a %n" /etc/shadow | grep 640)" ]'),
+ Vuln('Secure hashing algorithm is used', 1,'[ "$(grep ENCRYPT_METHOD\ SHA512 /etc/login.defs)" ]'),
+ Vuln('Failed logins are logged', 1,'[ "$(grep FAILLOG_ENAB /etc/login.defs | grep yes)" ]')
+```
 ### Installation
 Run the install.sh file after completeting the scoring booleans. The file will compile scoring.py and create an init job.
