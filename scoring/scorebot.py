@@ -11,13 +11,13 @@ class Vuln:
         self.desc = desc
         self.boolean = boolean
         self.val = val
-
+    #returns the point valie of a vuln
     def getValue(self):
         return self.val
-
+    #retruns the description of a vuln
     def getDescription(self):
         return self.desc
-
+    #returns True if a vuln if fixed, false if it is not
     def isFixed(self):
         if os.system(self.boolean) == 0:
             return True
@@ -30,13 +30,13 @@ class Service:
     def __init__(self, name, port):
         self.port = port
         self.name = name
-
+    #retusns the port a service runs on 
     def getPort(self):
         return self.port
 
     def getName(self):
         return self.name
-
+    #checks if a service is up by checking if its port is open
     def isDown(self):
         if os.system('netstat -tulpn| grep \"\:' + str(self.port) + '\"')  == 0:
             return False
@@ -50,7 +50,7 @@ class User:
 
     def getName(self):
         return self.name
-
+    #checks if users have proper functionality
     def works(self):
         if os.system(' [ -e /home/' + self.name + '/ ]') \
             + os.system(' [ "$(grep ' + self.name + ' /etc/passwd)" ]') \
@@ -62,6 +62,7 @@ class User:
 
 def update():
     percent = str(round(points / totalPoints * 100, 1)) + '%'
+    #autogenerates a score report with baked in html
     with open('/home/'+mainUser+'/Desktop/Score_Report.html', 'w') as f:
         f.write('<!DOCTYPE html> <html> <head> <meta name="viewport" content="width=device-width, initial-scale=1"> <style> * { box-sizing: border-box; } .column { float: left; padding: 10px; height: 1500px; } .left, .right { width: 25%; } .middle { width: 50%; } .row:after { content: ""; display: table; clear: both; }</style> </head> <body><div class="row"> <div class="column left" style="background-color:#0d60bf;"></div> <div class="row"> <div class="column middle" style="background-color:#fff;"><h1 style="text-align: center;"><span style="font-family: arial, helvetica, sans-serif;">Score Report</span></h1><h2 style="text-align: center;"><br /><span style="font-family: arial, helvetica, sans-serif;">'
                  + percent + ' completed</span></h2><p> </p>')
@@ -94,7 +95,7 @@ def update():
 
 
 mainUser = 'analyst'
-users = [User('analyst'), User('poop')]
+users = [User('analyst'), User('cyber')]
 services = [Service('sshd', 22), Service('mysqld', 3306)]
 allVulns = [
     Vuln('Forensics Question correct', 1, '[ "$(grep answer /home/'+ mainUser + '/Desktop/Forensics_1.txt)" ]'),
@@ -151,6 +152,7 @@ while True:
     points = points - penalties
 
     update()
+    #delay between each scoring loop
     time.sleep(60)
 
 			
