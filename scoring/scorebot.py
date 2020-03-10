@@ -11,7 +11,7 @@ class Vuln:
         self.desc = desc
         self.boolean = boolean
         self.val = val
-    #returns the point valie of a vuln
+    #returns the point value of a vuln
     def getValue(self):
         return self.val
     #retruns the description of a vuln
